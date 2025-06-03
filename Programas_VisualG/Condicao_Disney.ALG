@@ -1,25 +1,26 @@
 Algoritmo "Condicao"
-// Definir o nome do Programa
+// Definir o nome do programa
 
 Var
 // Seção de Declarações das variáveis 
-    valor: real
-    idade: inteiro
+    valor: inteiro
+    
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc... 
-escreval("Digite o valor disponível para viagem: ", valor)
+escreva("Digite o valor dispnível para viagem: ", valor)
 leia(valor)
+
 
 se valor >= 10000 entao
    escreva("Vamos para Disney")
 senao
      escreva("Saldo insuficiente")
 fimse
+     se (valor >= 5000) e (valor < 10000) entao
+     escreva("Visitar a família")
 
-se idade >= 18 entao
-   escreva("Autorizado a viajar")
+     senao
+          escreva("#chateado")
 
-senao
-     escreva("Não Autorizado a viajar")
 fimse
 Fimalgoritmo
