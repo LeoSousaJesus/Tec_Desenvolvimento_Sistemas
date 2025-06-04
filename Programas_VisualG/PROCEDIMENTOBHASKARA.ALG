@@ -19,7 +19,7 @@ escreval("Digite o valor de a: ")
    escreval("Digite o valor de c: ")
    leia(c)
 
-   delta := (b * b) - (4 * a * c)
+   delta := (b^2) - (4 * a * c)
 
    se delta < 0 entao
       escreval("Não existem raízes reais.")
