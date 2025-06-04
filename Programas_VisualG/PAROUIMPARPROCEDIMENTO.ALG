@@ -18,7 +18,6 @@ Leia(a)
    fimse
 FimProcedimento
 
-
 Inicio
        VerificarParImpar(N)
        
