@@ -3,12 +3,15 @@ Algoritmo "ContadorFaca"
 
 Var
 // Seção de Declarações das variáveis 
- C: Inteiro
+ x, salto, C: Inteiro
 
 Inicio
-// Seção de Comandos, procedimento, funções, operadores, etc... 
-   Para C <- 1 ate 10 faca
+// Seção de Comandos, procedimento, funções, operadores, etc...
+
+enquanto C <= 5 faca
+   Para C <- 1 ate 100 faca
    Escreval(C)
    FimPara
+Fimenquanto
 
 Fimalgoritmo
