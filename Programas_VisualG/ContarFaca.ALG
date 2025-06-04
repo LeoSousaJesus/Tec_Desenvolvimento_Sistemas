@@ -3,7 +3,7 @@ Algoritmo "ContadorFaca"
 
 Var
 // Seção de Declarações das variáveis 
- x, salto, C: Inteiro
+ salto, C: Inteiro
 
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc...
