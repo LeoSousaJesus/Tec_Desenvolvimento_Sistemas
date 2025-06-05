@@ -1,8 +1,10 @@
 programa {
   funcao inicio() {
     inteiro tipoSorvete
-      escreva("Sabores dos sorvetes de frutas\n") escreva("Código 1 - Sabor: Uva \n")
-      escreva("Código 2 - Sabor: Morango \n") escreva("Código 3 - Sabor: Manga \n")
+      escreva("Sabores dos sorvetes de frutas\n")
+      escreva("Código 1 - Sabor: Uva \n")
+      escreva("Código 2 - Sabor: Morango \n")
+      escreva("Código 3 - Sabor: Manga \n")
       escreva("Código 4 - Sabor: Amora \n")
 
 
