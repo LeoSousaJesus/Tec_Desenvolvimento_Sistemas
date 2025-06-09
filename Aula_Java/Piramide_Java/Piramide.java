@@ -1,4 +1,4 @@
-public class Piramide { // Nome da classe Pirâmide
+    public class Piramide { // Nome da classe Pirâmide
     /*    * Pirâmide.java
      * Este programa imprime uma pirâmide de asteriscos com um espaço no meio.
         Método principal que inicia a execução do programa
