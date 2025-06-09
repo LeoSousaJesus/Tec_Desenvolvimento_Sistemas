@@ -1,3 +1,5 @@
+// para(inicialização; condição; atualização)
+
 programa {
   funcao inicio() {
     //Exemplo: Algoritmo para imprimir a tabuada de 3 
