@@ -1,3 +1,5 @@
+// para(inicialização; condição; atualização)
+
 programa {
   funcao inicio() {
     inteiro contador
