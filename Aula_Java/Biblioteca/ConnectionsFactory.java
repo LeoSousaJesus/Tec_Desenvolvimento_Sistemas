@@ -1,29 +1,25 @@
-    package Aula_Java.Biblioteca;
-
-// ConectionsFactory.java
-// Esta classe é responsável por estabelecer a conexão com o banco de dados MySQL.
-// Certifique-se de ter o driver JDBC do MySQL no classpath do seu projeto.
-
+package Aula_Java.Biblioteca;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-public class ConectionsFactory {
+public class ConnectionsFactory {
+    
+    Connection conectaBD;
     public Connection conectaBD(){
         Connection conn = null;
      try {
+        // Configurações da conexão com o banco de dados 
          String url = "jdbc:mysql://localhost:3306/cadastro?useSSL=false";
          String user ="root";
          String password = "";
          conn = DriverManager.getConnection(url,user, password);
          
-     }
-        
-     catch (SQLException erro){
-    System.out.println("Deu ruim"+erro.getMessage());
+     }catch (SQLException e){
+                System.out.println("Deu ruim"+e.getMessage());
     }
-    return conn;
+        return conn;
     }
+}
 }

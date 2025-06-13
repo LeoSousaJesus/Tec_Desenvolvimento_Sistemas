@@ -6,7 +6,9 @@ package Aula_Java.Biblioteca;
         private String email;
         private String telefone;
         private String tipo_usuario;
-
+        
+    public Usuario() {
+    }
 
         public Usuario(int id, String nome, String email, String telefone, String tipo_usuario) {
             this.id = id;
@@ -54,6 +56,5 @@ package Aula_Java.Biblioteca;
         public void setTipo_usuario(String tipo_usuario) {
             this.tipo_usuario = tipo_usuario;
         }
-
-
     }
+
