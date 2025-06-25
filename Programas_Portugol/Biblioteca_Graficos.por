@@ -16,11 +16,11 @@ programa
 		g.limpar()
 
 		g.definir_cor(g.COR_AZUL)
-		g.desenhar_elipse(100, 100, 150, 150, falso)
+		g.desenhar_elipse(100, 100, 150, 150, verdadeiro)
 
 		
 		g.definir_cor(g.COR_VERDE)
-		g.desenhar_retangulo(250, 250, 200, 100, falso, falso)
+		g.desenhar_retangulo(250, 250, 200, 100, falso, verdadeiro)
 		
 		g.renderizar()
 		u.aguarde(10000)
@@ -31,7 +31,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 504; 
+ * @POSICAO-CURSOR = 517; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
