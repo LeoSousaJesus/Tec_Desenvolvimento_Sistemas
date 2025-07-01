@@ -1,6 +1,6 @@
 //Passagem de parametro por referencia
 programa {
-   funcao inteiro soma(inteiro&n1, inteiro n2, caracter letra){
+   funcao inteiro soma(inteiro &n1, inteiro n2, caracter letra){
  escreva("\nLetra: ",letra)
       n1 = 100
     retorne n1+n2
