@@ -1,8 +1,8 @@
-programa {
+    programa {
     funcao inicio() {
         // Declaração do vetor
         cadeia nomes[25], generos[25], cpfs[25], cidades[25], escolaridades[25], profissoes[25], telefones[25], emails[25]
-        inteiro idades[25], i
+        inteiro idades[25], i   
 
         // Entrada de dados
         para (i = 0; i < 5; i++) {
