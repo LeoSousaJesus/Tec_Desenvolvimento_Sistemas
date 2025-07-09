@@ -16,14 +16,12 @@ programa {
             escreva("Digite um número: ")
             leia(numero)
             
-            soma += numero  // Acumula a soma
-            quantidade++    // Conta a quantidade de números
+            soma += numero  // Acumulando a soma
+            quantidade++    // Contando a quantidade de números
             
-            // Mostra o progresso
             escreva("Soma atual: ", soma, " (", quantidade, " números digitados)\n\n")
         }
         
-        // Resultado final
         escreva("\n=== RESULTADO ===\n")
         escreva("Soma final: ", soma, "\n")
         escreva("Quantidade de números digitados: ", quantidade)
