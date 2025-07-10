@@ -11,14 +11,12 @@ programa {
         inteiro dia
         
         faca {
-            escreva("Informe o dia de pagamento (2, 5 ou 10): ")
+            escreva("Informe o dia de pagamento: ")
             leia(dia)
             
-            se (dia == 2 ou dia == 5 ou dia == 10) {
-                escreva("O Boleto deverá ser pago no dia ", dia, ".\n")
-            } senao {
-                escreva("Dia inválido! Informe um dos dias a seguir: (2, 5 ou 10).\n")
-            }
+            
         } enquanto (dia != 2 e dia != 5 e dia != 10)
+
+        escreva("O boleto deverá ser pago no dia:  ", dia)
     }
 }
