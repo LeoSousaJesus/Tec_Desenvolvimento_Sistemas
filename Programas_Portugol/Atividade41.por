@@ -9,7 +9,7 @@ programa
         
         // Preenche o vetor com os valores informados pelo usuário
         para (inteiro i = 0; i < 8; i++) {
-            escreva("Número ", i + 1, ": ")
+            escreva("Índice ", i + 0, ": ")
             leia(vetor[i])
         }
         
@@ -25,7 +25,6 @@ programa
             }
         }
         
-        // Exibe o resultado
         escreva("\nO maior valor do vetor informado é ", maior, " e ele se encontra no índice ", posicao, " do vetor.\n")
     }
 }
