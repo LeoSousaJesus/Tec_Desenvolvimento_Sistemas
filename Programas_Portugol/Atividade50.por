@@ -10,12 +10,12 @@ programa
     {
         cadeia nomes[11]
         inteiro gols[11]
-        inteiro indiceArtilheiro = 0
+        inteiro goleador = 0
         inteiro i
         
         escreva("Digite os dados dos 11 jogadores:\n")
         
-        // Leitura dos dados dos jogadores
+        // Leitura dos jogadores
         para (i = 0; i < 11; i++) {
             escreva("\nJogador ", i + 1, ":\n")
             escreva("Nome: ")
@@ -23,15 +23,15 @@ programa
             escreva("Quantidade de gols: ")
             leia(gols[i])
             
-            // Verifica se é o artilheiro
-            se (gols[i] > gols[indiceArtilheiro]) {
-                indiceArtilheiro = i
+            // Verificando o artilheiro
+            se (gols[i] > gols[goleador]) {
+                goleador = i
             }
         }
         
         // Exibe o artilheiro
-        escreva("\nO artilheiro do time é:\n")
-        escreva("Nome: ", nomes[indiceArtilheiro], "\n")
-        escreva("Gols: ", gols[indiceArtilheiro], "\n")
+        escreva("\nO goleador do time é:\n")
+        escreva("Nome: ", nomes[goleador], "\n")
+        escreva("Gols: ", gols[goleador], "\n")
     }
 }
