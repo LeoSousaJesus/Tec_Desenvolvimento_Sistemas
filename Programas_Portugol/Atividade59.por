@@ -31,10 +31,21 @@ programa {
         escreva("Digite seu nome: ")
         leia(usuario)
         
-        escreva("Digite a altura que deseja para a pirâmide: ")
+        escreva("Digite a quantidade de linhas(altura) da pirâmide: ")
         leia(alturaPiramide)
       
         Ola(usuario)
         piramide(alturaPiramide)
     }
 }
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 901; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
