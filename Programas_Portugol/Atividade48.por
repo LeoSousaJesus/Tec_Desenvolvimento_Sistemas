@@ -4,38 +4,44 @@ Assim que o cliente completar as 10 posições da cartela, o sistema deve aprese
 
 */
 
-programa
-{
-    funcao inicio()
-    {
-        real cartela[10]
+programa {
+    funcao inicio() {
+        real valores[10]
         inteiro posicao = 0
-        real valor
-        cadeia resposta
+        real pagamento
+        cadeia opcao
         
-        escreva("Bem-vindo!\n")
+        escreva("\nA cada 10 refeições pagas, você ganha uma cortesia!\n\n")
         
-        enquanto (posicao < 10) {
-            escreva("\nDigite o valor da refeição de hoje R$ ")
-            leia(valor)
-          
-            limpa()
-
-            // Armazenando o valor na cartela
-            cartela[posicao] = valor
-            posicao += 1
+        enquanto (verdadeiro) {
+            escreva("\nMenu:\n")
+            escreva("1 - Registrar pagamento\n")
+            escreva("2 - Sair\n")
+            escreva("Escolha uma opção: ")
+            leia(opcao)
             
-            // Verificando a cortesia
-            se (posicao == 10) {
-                escreva("Hoje o almoço é por conta da casa!\n")
-            } senao {
-                escreva("Refeição registrada! Faltam ", 10 - posicao, " para ganhar um almoço grátis.\n")
-                escreva("Deseja registrar outra refeição? (sim/não): ")
-                leia(resposta)
+            se (opcao == "1") {
+                escreva("\nDigite o valor da refeição: R$ ")
+                leia(pagamento)
                 
-                se (resposta == "não") {
-                    escreva("\nVolte sempre!\n")
+                valores[posicao] = pagamento
+                posicao++
+                
+                escreva("\nPagamento registrado! Posição atual: ", posicao, "/10\n")
+                
+                se (posicao == 10) {
+                    escreva("Hoje o seu almoço é cortesia da casa, Parabéns!\n")
+                    
+                    posicao = 0
+                    para (inteiro i = 0; i < 10; i++) {
+                        valores[i] = 0.0
+                    }
                 }
+            } senao se (opcao == "2") {
+                escreva("\nSistema encerrado. Agradecemos a preferência. Volte Sempre!\n")
+                pare
+            } senao {
+                escreva("\nOpção inválida! Digite 1 ou 2.\n")
             }
         }
     }
