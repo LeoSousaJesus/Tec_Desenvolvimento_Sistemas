@@ -1,17 +1,18 @@
+// Função sem retorno e sem parâmetro
+
 programa {
-  funcao inicio() {
-        inteiro i, a, b, linhas = 5
-        
-        para (i= 1; i <= linhas; i++) {
-          para(a = 1; a <= linhas - i; a++) {
-            escreva(" ")
-          }
-          para(b= 1; b <= (2 * i -1); b++) {
-            escreva("*")
-          }
-          escreva("\n")
-        }
-    }
+    funcao Piramide() {
+    	escreva("Bem vindo!\n")
+        escreva("\n")
+        escreva("    *\n")
+        escreva("   ***\n")
+        escreva("  *****\n")
+        escreva(" *******\n")
+        escreva("*********\n")
+}
+funcao inicio() {
+    Piramide()
+}
 }
 
 /* $$$ Portugol Studio $$$ 
@@ -19,7 +20,7 @@ programa {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 66; 
+ * @POSICAO-CURSOR = 100; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
