@@ -1,6 +1,5 @@
 programa
 {
-
     inclua biblioteca Matematica --> m
     // Variaveis para Produto
     cadeia produto[50]
@@ -113,16 +112,16 @@ programa
 
     // --- FUNÇÕES DE PRODUTO ---
     funcao cadastrarProduto(){
-        se (cadastroIndice < 50) {
+        se (cadastroIndice < 50) { //inteiro inicial
             escreva("\n--- Cadastro de Produto ---\n")
             escreva("Nome do produto: ")
-            leia(produto[cadastroIndice])
+            leia(produto[cadastroIndice]) //atribuição no vetor produto[]
             escreva("Preço do produto (Ex: 59.90): ")
-            leia(preco[cadastroIndice])
+            leia(preco[cadastroIndice]) 
             escreva("Quantidade em estoque: ")
             leia(quantidade[cadastroIndice])
             escreva("\nProduto '", produto[cadastroIndice], "' cadastrado com sucesso com o ID: ", cadastroIndice, "\n")
-            cadastroIndice++
+            cadastroIndice++ //indice do proximo produto aumentou em 1
         } senao {
             escreva("Limite de cadastro de produtos atingido!\n")
         }
@@ -133,8 +132,9 @@ programa
         consultarProduto()
         escreva("\nQual ID do produto quer atualizar? ")
         leia(id)
+        id-=1 // id = id - 1
 
-        se (id >= 0 e id < cadastroIndice) {
+        se (id >= 0 e id < cadastroIndice) { 
             escreva("\nProduto selecionado: ", produto[id], "\n")
             escreva("O que deseja atualizar?\n")
             escreva("1. Estoque\n")
@@ -158,7 +158,7 @@ programa
                 escreva("Certeza que deseja remover '", produto[id], "' da lista? (s/n): ")
                 leia(confirmacao)
                 se (confirmacao == "s" ou confirmacao == "S") {
-                    // Lógica para remover o item e reorganizar o array
+                    // Lógica para remover o item e reorganizar o vetor  
                     para (inteiro i = id; i < cadastroIndice - 1; i++) {
                         produto[i] = produto[i+1]
                         preco[i] = preco[i+1]
@@ -180,13 +180,13 @@ programa
         para(inteiro i = 0; i < cadastroIndice; i++){
             se(quantidade[i]<5){
               escreva("----------- QUASE ACABANDO -----------\n")
-              escreva("ID: ", i, "\n")
+              escreva("ID: ", 1+i, "\n")
               escreva("Produto: ", produto[i], "\n")
               escreva("Preço: R$ ", preco[i], "\n")
               escreva("Estoque: ", quantidade[i], " unidades\n")
             }senao{
             escreva("---------------------------------------\n")
-            escreva("ID: ", i, "\n")
+            escreva("ID: ", 1+i, "\n")
             escreva("Produto: ", produto[i], "\n")
             escreva("Preço: R$ ", preco[i], "\n")
             escreva("Estoque: ", quantidade[i], " unidades\n")
@@ -197,14 +197,14 @@ programa
 
     // --- FUNÇÕES DE CLIENTE ---
     funcao cadastrarCliente() {
-        se (totalClientes < 250) {
+        se (totalClientes < 50) {
             escreva("\n--- Cadastro de Cliente ---\n")
             escreva("Nome do Cliente: ")
             leia(nomesClientes[totalClientes])
             escreva("Telefone do Cliente: ")
             leia(telefoneCliente[totalClientes]) // Registro do nome cliente e telefone
             escreva("Cliente '", nomesClientes[totalClientes], "' cadastrado com sucesso! Código: ", totalClientes, "\n")
-            totalClientes++
+            totalClientes++ //Vai para o próximo cadastro
         } senao {
             escreva("Limite de clientes atingido!\n")
         }
@@ -214,7 +214,7 @@ programa
         escreva("\n--- LISTA DE CLIENTES CADASTRADOS ---\n")
         para (inteiro i = 0; i < totalClientes; i++) {
             escreva("---------------------------------------\n")
-            escreva("Código: ", i, "\n")
+            escreva("Código: ", 1+i, "\n")
             escreva("Nome: ", nomesClientes[i], "\n")
             escreva("Telefone: ", telefoneCliente[i], "\n")
         }
@@ -244,8 +244,8 @@ programa
         escreva("Digite o código do cliente para este pedido: ")
         escreva("\nCadastro de novo cliente digite 626: ")
         leia(clienteId)
-
-        se(clienteId==626){
+        clienteId-=1
+        se(clienteId==625){
           cadastrarCliente()
           clienteId=totalClientes-1
         }
@@ -262,6 +262,7 @@ programa
             escreva("Na compra de 6 ou mais peças do mesmo produto haverá um desconto de 15% nesse produto.")
             escreva("\nDigite o ID do produto desejado: ")
             leia(produtoId)
+            produtoId-=1
 
             se (produtoId >= 0 e produtoId < cadastroIndice) {
                 escreva("Digite a quantidade: ")
@@ -283,7 +284,7 @@ programa
 
                     venda_total_item[totalItensVendidos] = m.arredondar(valorTotal,2)
                     totalPedido += venda_total_item[totalItensVendidos]
-                    quantidade[produtoId] = quantidade[produtoId] - qtdDesejada // Abate do estoque
+                    quantidade[produtoId] -= qtdDesejada // Abate do estoque
                     
                     itensNestePedido[contadorItens] = totalItensVendidos // Guarda o índice
                     contadorItens++
@@ -333,15 +334,15 @@ programa
                     caso 4:
                     para (inteiro i = 0; i < contadorItens; i++) {
                         inteiro indice = itensNestePedido[i]
-                        inteiro prodId = venda_produto_id[indice]
-                        quantidade[prodId] = quantidade[prodId] + venda_quantidade[indice]
+                        inteiro id_produto = venda_produto_id[indice]
+                        quantidade[id_produto] = quantidade[id_produto] + venda_quantidade[indice]
                         totalItensVendidos--
                     }
                     escreva("Compra cancelada. Itens removidos e estoque restaurado.\n")
                     retorne
                     caso contrario: escreva("Escolha uma opção válida!\n")
                 }
-            }enquanto(opcPagamento >4)
+            }enquanto(opcPagamento >4 e opcPagamento<0)
 
             // Atribui as informações de entrega e pagamento a todos os itens deste pedido
             para(inteiro i = 0; i < contadorItens; i++) {
@@ -386,12 +387,12 @@ programa
                         clienteId = venda_cliente_id[i]
                         tipoEntrega = venda_tipo_entrega[i]
                         metodoPagamento = venda_metodo_pagamento[i]
-                        escreva("Cliente: ", nomesClientes[clienteId], " (Código: ", clienteId, ")\n\n")
+                        escreva("Cliente: ", nomesClientes[clienteId], " (Código: ", clienteId+1, ")\n\n")
                         escreva(" Item\t\t| Qtd\t| Preço Unit.\t| Subtotal\n")
                         escreva("----------------------------------------------------\n")
                     }
-                    inteiro prodId = venda_produto_id[i]
-                    escreva(" ", produto[prodId], "\t| ", venda_quantidade[i], "\t| R$ ",preco[prodId], "\t| R$ ", venda_total_item[i], "\n")
+                    inteiro id_produto = venda_produto_id[i]
+                    escreva(" ", produto[id_produto], "\t| ", venda_quantidade[i], "\t| R$ ",preco[id_produto], "\t| R$ ", venda_total_item[i], "\n")
                     totalDaVenda = totalDaVenda + venda_total_item[i]
                 }
             }
@@ -400,15 +401,12 @@ programa
                 totalDaVenda = totalDaVenda + 10.00
                 escreva(" Taxa de Entrega:\t\t\t\t| R$ 10.00\n")
             }
-            
             escreva("----------------------------------------------------\n")
             escreva(" > Entrega: ", tipoEntrega, "\n")
             escreva(" > Pagamento: ", metodoPagamento, "\n")
             // escreva(" > TOTAL DO PEDIDO: R$ ", totalDaVenda, "\n")
             // ALTERADO: Adicionado Matematica.arredondar() para formatar o total
             escreva(" > TOTAL DO PEDIDO: R$ ", m.arredondar(totalDaVenda, 2), "\n")
-
-            
         }
     }
 
