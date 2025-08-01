@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jkalango.dto.Genero;
 import br.com.jkalango.dto.Criador;
 
 // Classe principal do aplicativo
@@ -39,6 +38,10 @@ public class App {
         criadores.add(criador9);
         criadores.add(criador10);
 
+        // Exibindo o cabeçalho
+        System.out.println("======================================");
+        System.out.println("| Lista de Criadores de Conteúdo     |");
+        System.out.println("======================================");
         // Exibindo os detalhes dos criadores
         for (Criador criador : criadores) {
             System.out.println("Nome: " + criador.getNome());
@@ -91,17 +94,6 @@ public class App {
         // alterar
 
         // Imprime cabeçalho
-
-
-
-
-
-
-
-
-
-
-
 
 
 
