@@ -2,11 +2,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.jkalango.dto.Genero;
+import br.com.jkalango.dto.Criador;
+
+// Classe principal do aplicativo
+// Contém o método main que inicia a execução do programa
+
+
 
 
 public class App {
     public static void main(String[] args) throws Exception {
         
+        List<Criador> criadores = new ArrayList<>();
+
+        // Criando objetos da classe Criador
+        Criador criador1 = new Criador("João", "joaobarroso@gmail.com", "(61)987654321", "Desenvolvedor");
+        Criador criador2 = new Criador("Maria", "mariasilva@gmail.com", "(61)912345678", "Designer");
+        Criador criador3 = new Criador("Carlos", "carlossousa2gmail.com", "(61)998877665", "Gerente de Projetos");
+        Criador criador4 = new Criador("Ana", "anacortez@gmail.com", "(61)923456789", "Analista de Sistemas");
+        Criador criador5 = new Criador("Pedro", "pedrosampaio@gmail.com", "(61)945678123", "Arquiteto de Software");
+        Criador criador6 = new Criador("Luiza", "luizasantana@gmail.com", "(61)987123456", "Especialista em UX/UI");
+        Criador criador7 = new Criador("Fernanda", "fernandaalmeida@gmail.com", "(61)912345678", "Gerente de Marketing");
+        Criador criador8 = new Criador("Ricardo", "ricardotavarez@gmail.com", "(61)998877665", "Engenheiro de Dados");
+        Criador criador9 = new Criador("Juliana", "julianaalbuquerque@gmail.com", "(61)923456789", "Cientista de Dados");
+        Criador criador10 = new Criador("Roberto", "robertosantos@gmail.com", "(61)945678123", "Administrador de Sistemas");
+
+        // Adicionando os criadores à lista
+        criadores.add(criador1);
+        criadores.add(criador2);
+        criadores.add(criador3);
+        criadores.add(criador4);
+        criadores.add(criador5);
+        criadores.add(criador6);
+        criadores.add(criador7);
+        criadores.add(criador8);
+        criadores.add(criador9);
+        criadores.add(criador10);
+
+        // Exibindo os detalhes dos criadores
+        for (Criador criador : criadores) {
+            System.out.println("Nome: " + criador.getNome());
+            System.out.println("Email: " + criador.getEmail());
+            System.out.println("Telefone: " + criador.getTelefone());
+            System.out.println("Perfil: " + criador.getPerfil());
+            System.out.println("-------------------------------------");
+        }
+        
+        /* 
         List<Genero> lista = new ArrayList<>();
         
             Genero g1 = new Genero("Action", "ação e aventura");
@@ -40,6 +82,7 @@ public class App {
             System.out.println("Descrição: " + genero.getDescript());
             System.out.println("-------------------------------------");
         }
+        */    
 
         // pesquisar
 
@@ -48,9 +91,24 @@ public class App {
         // alterar
 
         // Imprime cabeçalho
-        System.out.println("======================================");
-        System.out.println("|Criando objetos e atribuindo valores|");
-        System.out.println("======================================");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // System.out.println("======================================");
+        // System.out.println("|Criando objetos e atribuindo valores|");
+        // System.out.println("======================================");
 
         // Cria objeto Genero sem nome e descrição
         /*Genero g1 = new Genero(null, null);
