@@ -1,6 +1,7 @@
-import br.com.jkalango.dto.Genero;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.jkalango.dto.Genero;
 
 
 public class App {
@@ -13,6 +14,7 @@ public class App {
             Genero g3 = new Genero("RPG", "jogo de interpretação de papéis");
             Genero g4 = new Genero("Estrategy", "jogo de estratégia em tempo real");
             Genero g5 = new Genero("Simulation", "jogo de simulação de vida");
+            Genero g6 = new Genero("Comedia", "jogo de comédia e humor");
         
         //adicionar
             
@@ -21,8 +23,23 @@ public class App {
             lista.add(g3);
             lista.add(g4);
             lista.add(g5);
+            lista.add(g6);
+            lista.add(new Genero("Shooter", "jogo de tiro em primeira pessoa")); 
+
             System.out.println(lista);
 
+        // Iterar = Looping = Repetição
+        // Iterando e exibindo os elementos da lista - looping
+
+        // Para Lista(Banco de Dados) - O for é indicado
+
+        // Para uma Lógica complexa - O while é indicado
+
+        for (Genero genero : lista) {
+            System.out.println("Nome: " + genero.getName());
+            System.out.println("Descrição: " + genero.getDescript());
+            System.out.println("-------------------------------------");
+        }
 
         // pesquisar
 
