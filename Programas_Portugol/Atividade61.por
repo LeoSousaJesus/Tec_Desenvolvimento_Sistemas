@@ -1,12 +1,12 @@
 programa {
-    funcao cadeia Maior(real num1, real num2) {
-        se (num1 > num2) {
-            escreva("O primeiro número ", num1, " é maior que o segundo número ", num2, "\n")
-        } senao se (num2 > num1) {
-            escreva("O segundo número ", num2, " é maior que o primeiro número ", num1, "\n")
+    funcao cadeia Maior(real numero1, real numero2) {
+        se (numero1 > numero2) {
+            escreva("O primeiro número ", numero1, " é maior que o segundo número ", numero2, "\n")
+        } senao se (numero2 > numero1) {
+            escreva("O segundo número ", numero2, " é maior que o primeiro número ", numero1, "\n")
         } senao {
-            escreva("Os números são iguais (", num1, " = ", num2, ")\n")
-            retorne (" ")
+            escreva("Os números são iguais\n")
+            retorne " "
         }
     }
 
