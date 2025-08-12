@@ -3,9 +3,10 @@ programa {
   inclua biblioteca Teclado --> t
   inclua biblioteca Util --> u
   inclua biblioteca Mouse --> m
+  inclua biblioteca Sons --> s
 
-  const inteiro LARGURA_JANELA = 800
-  const inteiro ALTURA_JANELA = 600
+  const inteiro LARGURA_JANELA = 900
+  const inteiro ALTURA_JANELA = 750
   const inteiro TAMANHO_CARTA_L = 120
   const inteiro TAMANHO_CARTA_A = 150
   const inteiro MARGEM_CARTA = 10
@@ -22,6 +23,12 @@ programa {
   inteiro img_coin10
   inteiro img_coin20
 
+  // IDs das imagens por sons
+  inteiro cartas_som
+  inteiro erros_som
+  inteiro vitoria_som
+  inteiro resete_som
+
   // Arrays paralelos para representar as cartas
   inteiro id_tipos[NUM_CARTAS] // Identificador do tipo da carta (1-6)
   logico viradas[NUM_CARTAS] // Indica se a carta está virada para cima
@@ -30,7 +37,7 @@ programa {
   inteiro pos_y[NUM_CARTAS]
 
   // Variáveis de controle do jogo
-  inteiro tentativas = 2
+  inteiro tentativas = 3
   inteiro erros = 0
   inteiro vitorias = 0
   inteiro cartas_viradas_indices[2] // Armazena os índices das cartas viradas (máximo 2)
@@ -39,9 +46,74 @@ programa {
   logico aguardando = falso
   logico jogo_ganho = falso
 
+  funcao inicio() {
+    g.iniciar_modo_grafico(falso)
+    g.definir_dimensoes_janela(LARGURA_JANELA, ALTURA_JANELA)
+    g.definir_titulo_janela("Jogo da Memória SMB3")
+    g.definir_cor(g.criar_cor(26, 26, 26))
+
+    // Carrega as imagens
+    img_card_back = g.carregar_imagem("card_back.png")
+    img_flower = g.carregar_imagem("card_flower.png")
+    img_mushroom = g.carregar_imagem("card_mushroom.png")
+    img_star = g.carregar_imagem("card_star.png")
+    img_1up = g.carregar_imagem("card_1up.png")
+    img_coin10 = g.carregar_imagem("card_coin10.png")
+    img_coin20 = g.carregar_imagem("card_coin20.png")
+
+    img_card_back = g.redimensionar_imagem(img_card_back,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_flower = g.redimensionar_imagem(img_flower,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_mushroom = g.redimensionar_imagem(img_mushroom,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_star = g.redimensionar_imagem(img_star,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_1up = g.redimensionar_imagem(img_1up,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_coin10 = g.redimensionar_imagem(img_coin10,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+    img_coin20 = g.redimensionar_imagem(img_coin20,TAMANHO_CARTA_L,TAMANHO_CARTA_A,verdadeiro)
+
+
+    cartas_som = s.carregar_som("vira(1).mp3")
+    erros_som = s.carregar_som("já tem mais 1 erro.mp3")
+    vitoria_som = s.carregar_som("Ganhoou de novo, puxa! vida!.mp3")
+    resete_som = s.carregar_som("Espero que tenha uma boa memória!.mp3")
+
+    
+
+    
+
+    embaralhar_cartas()
+
+    // Loop principal do jogo
+    enquanto (nao t.tecla_pressionada(t.TECLA_ESC)) {
+      // Processa entrada
+      processar_entrada()
+      
+      se (nao jogo_ganho) {
+        verificar_clique_carta()
+        processar_espera()
+      }
+
+
+
+      // Limpa a tela
+      g.limpar()
+
+      // Desenha todas as cartas
+      para (inteiro i = 0; i < NUM_CARTAS; i++) {
+        desenhar_carta(i)
+      }
+
+      // Desenha interface
+      desenhar_interface()
+
+      g.renderizar()
+      u.aguarde(50) // Pequena pausa para evitar uso excessivo de CPU
+    }
+
+    g.encerrar_modo_grafico()
+  }
+
   funcao embaralhar_cartas() {
     // Cria array com pares de tipos (6 tipos, 3 pares de cada)
-    inteiro tipos_para_embaralhar[] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 1, 2, 3, 4, 5, 6}
+    inteiro tipos_para_embaralhar[] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 1, 1, 3, 3, 5, 5}
     
     // Embaralha usando algoritmo Fisher-Yates
     para (inteiro i = u.numero_elementos(tipos_para_embaralhar) - 1; i > 0; i--) {
@@ -76,6 +148,7 @@ programa {
           viradas[i] = verdadeiro
           cartas_viradas_indices[num_cartas_viradas] = i
           num_cartas_viradas++
+          s.reproduzir_som(cartas_som,falso)
 
           se (num_cartas_viradas == 2) {
             verificar_combinacao()
@@ -117,9 +190,17 @@ programa {
       tentativas--
       se (tentativas <= 0) {
         // Reinicia o jogo
-        tentativas = 2
+        tentativas = 3
         erros++
-        reiniciar_cartas()
+        s.reproduzir_som(erros_som,falso)
+        para (inteiro i = 0; i < NUM_CARTAS; i++) {
+      	viradas[i] = falso
+      	encontradas[i] = falso
+      	s.reproduzir_som(resete_som,falso)
+      	s.pausar_som(resete_som)
+      
+   	   }
+   	   
       }
     }
   }
@@ -135,18 +216,21 @@ programa {
     se (cartas_encontradas_count == NUM_CARTAS) {
       jogo_ganho = verdadeiro
       vitorias++
+      s.reproduzir_som(vitoria_som,falso)
     }
   }
 
-  funcao reiniciar_cartas() {
-    para (inteiro i = 0; i < NUM_CARTAS; i++) {
-      viradas[i] = falso
-      encontradas[i] = falso
-    }
-    embaralhar_cartas()
-  }
+  
 
- 
+
+  funcao processar_entrada() {
+    se (jogo_ganho e t.tecla_pressionada(t.TECLA_ESPACO)) {
+      jogo_ganho = falso
+      reiniciar_cartas()
+      tentativas = 3
+      s.reproduzir_som(resete_som,falso)
+    }
+  }
 
   funcao desenhar_interface() {
     // Desenha painel de informações
@@ -166,83 +250,39 @@ programa {
 
     se (jogo_ganho) {
       g.definir_cor(g.criar_cor(0, 255, 0))
-      g.desenhar_texto(300, 300, "PARABÉNS! VOCÊ GANHOU!")
-      g.desenhar_texto(300, 320, "Pressione ESPAÇO para continuar")
+      g.desenhar_texto(350, 600, "PARABÉNS! VOCÊ GANHOU!")
+      g.desenhar_texto(333, 620, "Pressione ESPAÇO para continuar")
     }
   }
 
-  funcao processar_entrada() {
-    se (jogo_ganho e t.tecla_pressionada(t.TECLA_ESPACO)) {
-      jogo_ganho = falso
-      tentativas = 2
-      reiniciar_cartas()
-    }
-  }
-
-  funcao inicio() {
-    g.iniciar_modo_grafico(falso)
-    g.definir_dimensoes_janela(LARGURA_JANELA, ALTURA_JANELA)
-    g.definir_titulo_janela("Jogo da Memória SMB3")
-    g.definir_cor(g.criar_cor(26, 26, 26))
-
-    // Carrega as imagens
-    img_card_back = g.carregar_imagem("card_back.png")
-    img_flower = g.carregar_imagem("card_flower.png")
-    img_mushroom = g.carregar_imagem("card_mushroom.png")
-    img_star = g.carregar_imagem("card_star.png")
-    img_1up = g.carregar_imagem("card_1up.png")
-    img_coin10 = g.carregar_imagem("card_coin10.png")
-    img_coin20 = g.carregar_imagem("card_coin20.png")
-
-    embaralhar_cartas()
-
-    // Loop principal do jogo
-    enquanto (nao t.tecla_pressionada(t.TECLA_ESC)) {
-      // Processa entrada
-      processar_entrada()
-      
-      se (nao jogo_ganho) {
-        verificar_clique_carta()
-        processar_espera()
-      }
-
-
-
-      // Limpa a tela
-      g.limpar()
-
-      // Desenha todas as cartas
-      para (inteiro i = 0; i < NUM_CARTAS; i++) {
-        desenhar_carta(i)
-      }
-
-      // Desenha interface
-      desenhar_interface()
-
-      g.renderizar()
-      u.aguarde(50) // Pequena pausa para evitar uso excessivo de CPU
-    }
-
-    g.encerrar_modo_grafico()
-  }
+  
 
    funcao desenhar_carta(inteiro indice) {
     se (viradas[indice] ou encontradas[indice]) {
       // Desenha a frente da carta com a imagem correspondente
       escolha (id_tipos[indice]) {
-        caso 1: g.desenhar_imagem(img_flower, pos_x[indice], pos_y[indice])
-        caso 2: g.desenhar_imagem(img_mushroom, pos_x[indice], pos_y[indice])
-        caso 3: g.desenhar_imagem(img_star, pos_x[indice], pos_y[indice])
-        caso 4: g.desenhar_imagem(img_1up, pos_x[indice], pos_y[indice])
-        caso 5: g.desenhar_imagem(img_coin10, pos_x[indice], pos_y[indice])
-        caso 6: g.desenhar_imagem(img_coin20, pos_x[indice], pos_y[indice])
+        caso 1: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_flower) pare
+        caso 2: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_mushroom) pare
+        caso 3: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_star) pare
+        caso 4: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_1up) pare
+        caso 5: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_coin10) pare
+        caso 6: g.desenhar_imagem( pos_x[indice], pos_y[indice],img_coin20) pare
       }
     } senao {
       // Desenha o verso da carta
-      g.desenhar_imagem(img_card_back, pos_x[indice], pos_y[indice])
+      g.desenhar_imagem ( pos_x[indice], pos_y[indice],img_card_back)
     }
   }
+  
+  funcao reiniciar_cartas() {
+    para (inteiro i = 0; i < NUM_CARTAS; i++) {
+      viradas[i] = falso
+      encontradas[i] = falso
+    }
+    embaralhar_cartas()
+  }
 }
+
 
 
 
@@ -252,9 +292,9 @@ programa {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5604; 
- * @PONTOS-DE-PARADA = 242;
- * @SIMBOLOS-INSPECIONADOS = {img_1up, 20, 10, 7}-{cartas_viradas_indices, 36, 10, 22};
+ * @POSICAO-CURSOR = 8484; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
