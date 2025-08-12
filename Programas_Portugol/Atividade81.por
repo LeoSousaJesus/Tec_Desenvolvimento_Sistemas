@@ -8,9 +8,9 @@ programa{
         enquanto (totalVotos < maxVotos){
             escreva("\n------ Eleição Presidencial ------\n")
             escreva("Eleitor ", totalVotos + 1, " de ", maxVotos, "\n")
-            escreva("1 - Severino\n")
-            escreva("2 - Eustácio\n")
-            escreva("3 - Eduardo\n")
+            escreva("1 - Lulalal\n")
+            escreva("2 - Bozonario\n")
+            escreva("3 - Leoncio\n")
             escreva("4 - Voto em branco\n")
             escreva("5 - Voto nulo\n")
             escreva("Escolha sua opção: ")
@@ -57,9 +57,9 @@ programa{
 
         escreva("\n====== RESULTADO FINAL DA VOTAÇÃO ======\n")
         escreva("Total de votos: ", totalVotos, "\n")
-        escreva("Candidato 1 (Severino): ", candidato1, " votos (", perc1, "%)\n")
-        escreva("Candidato 2 (Eustácio): ", candidato2, " votos (", perc2, "%)\n")
-        escreva("Candidato 3 (Eduardo): ", candidato3, " votos (", perc3, "%)\n")
+        escreva("Candidato 1 (Lulalal): ", candidato1, " votos (", perc1, "%)\n")
+        escreva("Candidato 2 (Bozonario): ", candidato2, " votos (", perc2, "%)\n")
+        escreva("Candidato 3 (Leo): ", candidato3, " votos (", perc3, "%)\n")
         escreva("Votos em branco: ", branco, " (", percBranco, "%)\n")
         escreva("Votos nulos: ", nulo, " (", percNulo, "%)\n")
     }
