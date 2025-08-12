@@ -12,15 +12,15 @@ programa
     
     funcao inicio()
     {
-        caracter sequencia
-        inteiro mulheres = 0, homens = 0
+        cadeia sequencia
+        inteiro mulheres = 0, homens = 0, total
         
         escreva("Digite a sequência de gêneros (M/F): ")
         leia(sequencia)
+        total=t.numero_caracteres(sequencia)
         
-        
-        para(inteiro i = 0; i < t.numero_caracteres(sequencia); i++) {
-            inteiro letra = t.numero_caracteres(sequencia, i)
+        para(inteiro i = 0; i < total; i++) {
+            caracter letra = t.obter_caracter(sequencia, i)
             
             se(letra == 'F' ou letra == 'f') {
                 mulheres++
