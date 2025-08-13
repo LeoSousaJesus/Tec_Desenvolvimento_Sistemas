@@ -54,9 +54,9 @@ inclua biblioteca Util --> u
 
 		inteiro brancos = 1
 
-	    enquanto (brancos <= quantidade){
-				escreva (" ")
-          brancos++
+	  enquanto (brancos <= quantidade){
+			escreva (" ")
+        brancos++
+		}
 	}
 }
-			}
