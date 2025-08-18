@@ -11,7 +11,7 @@ programa{
     funcao inicio(){
         // Inicializa o modo gráfico
         g.iniciar_modo_grafico(verdadeiro)
-        g.definir_dimensoes_janela(1000, 800)
+        g.definir_dimensoes_janela(1200, 1000)
         g.definir_titulo_janela("Jogo da Forca")
         
         // Carrega as imagens dos estágios da forca
@@ -159,6 +159,13 @@ programa{
         imagemForca[4] = g.carregar_imagem("estagio_4.png")
         imagemForca[5] = g.carregar_imagem("estagio_5.png")
         imagemForca[6] = g.carregar_imagem("estagio_6.png")
+        imagemForca[0] = g.redimensionar_imagem(imagemForca[0], 1000, 800, verdadeiro)
+        imagemForca[1] = g.redimensionar_imagem(imagemForca[1], 1000, 800, verdadeiro)
+        imagemForca[2] = g.redimensionar_imagem(imagemForca[2], 1000, 800, verdadeiro)
+        imagemForca[3] = g.redimensionar_imagem(imagemForca[3], 1000, 800, verdadeiro)
+        imagemForca[4] = g.redimensionar_imagem(imagemForca[4], 1000, 800, verdadeiro)
+        imagemForca[5] = g.redimensionar_imagem(imagemForca[5], 1000, 800, verdadeiro)
+	   imagemForca[6] = g.redimensionar_imagem(imagemForca[6], 1000, 800, verdadeiro)
     }
     
     funcao carregarSons(){
@@ -184,12 +191,12 @@ programa{
         g.limpar()
         
         // Desenha a imagem da forca correspondente ao número de erros
-        g.desenhar_imagem(1, 1, imagemForca[erros])
+        g.desenhar_imagem(0, 0, imagemForca[erros])
         
         // Desenha o título
         g.definir_cor(g.COR_VERMELHO)
-        g.definir_tamanho_texto(16)
-        g.desenhar_texto(300, 30, "JOGO DA FORCA")
+        g.definir_tamanho_texto(30)
+        g.desenhar_texto(500, 20, "JOGO DA FORCA")
         
         // Desenha a palavra oculta
         g.definir_cor(g.COR_PRETO)
@@ -198,21 +205,21 @@ programa{
         para (inteiro i = 0; i < tamanhoPalavra; i++){
             palavraExibida += palavraOculta[i] + " "
         }
-        g.desenhar_texto(300, 150, "Palavra: " + palavraExibida)
+        g.desenhar_texto(900, 850, "Palavra: " + palavraExibida)
         
         // Desenha as letras tentadas
         g.definir_tamanho_texto(18)
-        g.desenhar_texto(300, 200, "Letras tentadas: " + letrasTentadas)
+        g.desenhar_texto(900, 890, "Letras tentadas: " + letrasTentadas)
         
         // Desenha o contador de erros
-        g.desenhar_texto(300, 230, "Erros: " + erros + " de 6")
+        g.desenhar_texto(900, 930, "Erros: " + erros + " de 6")
         
         // Desenha as dicas já mostradas
         g.definir_cor(g.COR_PRETO)
         g.definir_tamanho_texto(16)
-        inteiro yDica = 280
+        inteiro yDica = 850
         para(inteiro i = 0; i < indiceDica e i < 3; i++){
-            g.desenhar_texto(300, yDica, "Dica " + (i+1) + ": " + dicas[indiceSorteado][i])
+            g.desenhar_texto(50, yDica, "Dica " + (i+1) + ": " + dicas[indiceSorteado][i])
             yDica += 25
         }
         
@@ -236,7 +243,7 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3628; 
+ * @POSICAO-CURSOR = 7127; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
