@@ -1,0 +1,169 @@
+programa{
+    inclua biblioteca Util --> u
+    inclua biblioteca Texto --> t
+
+    funcao inicio(){
+        // Lista de palavras possíveis
+        cadeia listaPalavras[3] = {"amor", "pinguim", "dormir"}
+        
+        // Matriz de dicas (3 dicas para cada palavra)
+        cadeia dicas[3][3] = {
+            {"É um sentimento de afeto", "Pode estar relacionada à duas pessoas apaixonadas, a familia, amigos, etc", "Pode ser a primeira vista"},
+            {"É um animal que gosta do frio", "Ele se alimenta de peixes", "Quando a femêa bota o ovo, o macho é quem o choca e ela que vai caçar"},
+            {"É um verbo(ação)", "Está relacionado ao quarto", "Você pode ter bons sonhos ou pesadelos"}
+        }
+        
+        // Sorteia um índice entre 0 e (tamanho - 1)
+        inteiro indiceSorteado = u.sorteia(0, 2)
+
+        // Define a palavra secreta e as dicas dela
+        cadeia palavraSecreta = listaPalavras[indiceSorteado]
+        
+        cadeia letrasTentadas = ""
+        caracter palavraOculta[50] 
+        inteiro erros = 0
+        inteiro maxErros = 6
+        logico jogoTerminou = falso
+        inteiro tamanhoPalavra
+        inteiro indiceDica = 0 // controla qual dica será mostrada
+
+        // Obtém tamanho e transforma para maiúsculas
+        tamanhoPalavra = t.numero_caracteres(palavraSecreta)
+        palavraSecreta = t.caixa_alta(palavraSecreta)
+
+        // Preenche palavra oculta com traços
+        para (inteiro i = 0; i < tamanhoPalavra; i++){
+            palavraOculta[i] = '_'
+        }
+
+        // Loop do jogo
+        enquanto (nao jogoTerminou){
+            desenharForca(erros)
+            escreva("\nPalavra: ")
+            para (inteiro i = 0; i < tamanhoPalavra; i++){
+                escreva(palavraOculta[i], " ")
+            }
+            escreva("\n")
+            escreva("Letras tentadas: ", letrasTentadas, "\n")
+            escreva("Erros: ", erros, " de ", maxErros, "\n")
+
+            cadeia letraDigitada
+            escreva("Digite uma letra: ")
+            leia(letraDigitada)
+            letraDigitada = t.caixa_alta(letraDigitada)
+
+            se(t.numero_caracteres(letraDigitada) != 1){
+                escreva("\nEntrada inválida. Digite apenas UMA letra.\n")
+                u.aguarde(1500)
+                limpa()
+            }
+
+            caracter charDigitado = t.obter_caracter(letraDigitada, 0)
+            se (letraJaFoiTentada(letrasTentadas, charDigitado)) {
+                escreva("\nVocê já tentou esta letra. Tente outra.\n")
+                u.aguarde(1500)
+                limpa()
+            }
+
+            letrasTentadas += letraDigitada
+            logico acertouLetra = falso
+
+            para (inteiro i = 0; i < tamanhoPalavra; i++) {
+                se (t.obter_caracter(palavraSecreta, i) == charDigitado) {
+                    palavraOculta[i] = charDigitado
+                    acertouLetra = verdadeiro
+                }
+            }
+
+            se(nao acertouLetra) {
+                erros++
+                escreva("\nQue pena! A letra '", charDigitado, "' não está na palavra.\n")
+                
+                // Mostra dica correspondente ao número de erros (se existir)
+                se(indiceDica < 3) {
+                    escreva("Dica ", indiceDica+1, ": ", dicas[indiceSorteado][indiceDica], "\n")
+                    indiceDica++
+                }
+                senao {
+                  escreva("Suas dicas acabaram!")
+                }
+
+                u.aguarde(2500)
+            }
+
+            limpa()
+
+            logico ganhou = verdadeiro
+            para (inteiro i = 0; i < tamanhoPalavra; i++){
+                se (palavraOculta[i] == '_'){
+                    ganhou = falso
+                    pare
+                }
+            }
+
+            se (ganhou) {
+                desenharForca(erros)
+                escreva("\nPalavra: ")
+                para (inteiro i = 0; i < tamanhoPalavra; i++) {
+                    escreva(palavraOculta[i], " ")
+                }
+                escreva("\n\nPARABÉNS! Você adivinhou a palavra '", palavraSecreta, "'!\n")
+                jogoTerminou = verdadeiro
+            } 
+            senao se(erros >= maxErros){
+                desenharForca(erros)
+                escreva("\nVOCÊ PERDEU! A palavra secreta era '", palavraSecreta, "'.\n")
+                jogoTerminou = verdadeiro
+            }
+        }
+    }
+
+    funcao logico letraJaFoiTentada(cadeia letras, caracter letraBuscada) {
+        para (inteiro i = 0; i < t.numero_caracteres(letras); i++) {
+            se (t.obter_caracter(letras, i) == letraBuscada) {
+                retorne verdadeiro
+            }
+        }
+        retorne falso
+    }
+
+    funcao desenharForca(inteiro erros) {
+        escreva(".....\n")
+        escreva(":   :\n")
+        se (erros >= 1) {
+            escreva(":   O \n")
+        }
+        senao {
+            escreva(":     \n")
+        }
+
+        se (erros >= 2) {
+            se (erros == 2) {
+                escreva(":   | \n")
+            }
+            senao se (erros == 3) {
+                escreva(":  /| \n")
+            }
+            senao se (erros >= 4) {
+                escreva(":  /|\\\n")
+            }
+        }
+        senao {
+            escreva(":     \n")
+        }
+
+        se (erros >= 5) {
+            se (erros == 5) {
+                escreva(":  / \n")
+            }
+            senao {
+                escreva(":  / \\\n")
+            }
+        }
+        senao {
+            escreva(":     \n")
+        }
+        escreva(":     \n")
+        escreva("=========\n")
+    }
+}
