@@ -35,3 +35,13 @@ SELECT * FROM categoria;
 SELECT * FROM categoria WHERE id=1;
 SELECT * FROM categoria WHERE nome LIKE '%aplic%';
 
+SELECT * FROM categoria WHERE id=1;
+
+INSERT INTO curso VALUES (1, 'python crie sua primeira aplcação', 'criar variáveis, utilizar estruturas e utilizar operadores', 'lógica de programação', 120, '2025-10-01', 5, 30, 8, 1);
+INSERT INTO curso VALUES (2, 'java conexoes', 'springboot, utilizar estruturas e utilizar OO', 'lógica de programação', 220, '2025-10-05', 5, 30, 8,2);
+
+SELECT * FROM curso;
+
+
+
+
