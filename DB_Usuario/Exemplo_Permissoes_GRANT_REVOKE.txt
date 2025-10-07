@@ -1,0 +1,52 @@
+
+Setting environment for using XAMPP for Windows.
+aluno@LAB-F08-13 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 26
+Server version: 10.4.19-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE USER 'stag_enzo'@'localhost' IDENTIFIED BY '1234';
+Query OK, 0 rows affected (0.034 sec)
+
+MariaDB [(none)]> SELECT user FROM mysql.user;
++-----------+
+| User      |
++-----------+
+| root      |
+| root      |
+| pma       |
+| root      |
+| stag_enzo |
++-----------+
+5 rows in set (0.070 sec)
+
+MariaDB [(none)]> GRANT INSERT, SELECT ON db_usuario.usuario TO 'stag_enzo'@'localhost';
+ERROR 1194 (HY000): Table 'tables_priv' is marked as crashed and should be repaired
+MariaDB [(none)]> GRANT INSERT, SELECT ON usuario.usuario TO 'stag_enzo'@'localhost';
+ERROR 1146 (42S02): Table 'usuario.usuario' doesn't exist
+MariaDB [(none)]> GRANT INSERT, SELECT ON db_usuario.usuario TO 'stag_enzo'@'localhost';
+ERROR 1194 (HY000): Table 'tables_priv' is marked as crashed and should be repaired
+MariaDB [(none)]> REVOKE INSERT, SELECT ON db_usuario.usuario FROM 'stag_enzo'@'localhost';
+ERROR 1147 (42000): There is no such grant defined for user 'stag_enzo' on host 'localhost' on table 'usuario'
+MariaDB [(none)]> FLUSH PRIVILEGES; (Em caso de erro utilize FLUSH PRIVILEGES - Comando que faz um commit da atualização)
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [(none)]> DROP USER 'stag_enzo'@'localhost';
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [(none)]> SELECT user FROM mysql.user;
++------+
+| User |
++------+
+| root |
+| root |
+| pma  |
+| root |
++------+
+4 rows in set (0.001 sec)
