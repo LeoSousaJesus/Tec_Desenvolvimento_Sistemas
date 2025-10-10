@@ -45,17 +45,19 @@ CREATE TABLE IF NOT EXISTS turma(
 );
 
 CREATE TABLE IF NOT EXISTS aluno_has_turma(
+    id_aluno_has_turma INT PRIMARY KEY AUTO_INCREMENT,
     aluno_matricula_aluno INT NOT NULL,
     turma_cod_turma INT NOT NULL,
-    PRIMARY KEY (aluno_matricula_aluno, turma_cod_turma),
+    UNIQUE KEY ux_aluno_has_turma_aluno_turma (aluno_matricula_aluno, turma_cod_turma),
     CONSTRAINT fk_aluno_has_turma_aluno FOREIGN KEY (aluno_matricula_aluno) REFERENCES aluno(matricula_aluno),
     CONSTRAINT fk_aluno_has_turma_turma FOREIGN KEY (turma_cod_turma) REFERENCES turma(cod_turma)
 );
 
 CREATE TABLE IF NOT EXISTS professor_has_turma(
+    id_professor_has_turma INT PRIMARY KEY AUTO_INCREMENT,
     professor_matricula_professor INT NOT NULL,
     turma_cod_turma INT NOT NULL,
-    PRIMARY KEY (professor_matricula_professor, turma_cod_turma),
+    UNIQUE KEY ux_professor_has_turma_professor_turma (professor_matricula_professor, turma_cod_turma),
     CONSTRAINT fk_professor_has_turma_professor FOREIGN KEY (professor_matricula_professor) REFERENCES professor(matricula_professor),
     CONSTRAINT fk_professor_has_turma_turma FOREIGN KEY (turma_cod_turma) REFERENCES turma(cod_turma)
 );
