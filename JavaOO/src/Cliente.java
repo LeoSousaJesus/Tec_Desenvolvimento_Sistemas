@@ -1,4 +1,9 @@
-public class Cliente {
+public abstract class Cliente {
+
+    // Ela possui métodos concretos e métodos abstratos
+    // Ela está no alto nível da abstração
+    // Não pode ser instanciada
+    // GET SET constructor
     private String nome;
     private String email;
     private String telefone;
