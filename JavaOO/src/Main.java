@@ -2,18 +2,16 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Cliente cliente1 = new Cliente();
-        cliente1.setNome("Leo");
-        cliente1.setEmail("leo@email.com");
-        cliente1.setTelefone("6193457894");
-        cliente1.setSalarioBruto(8500);
-        System.out.println("nome: "+cliente1.getNome());
+        ClienteJuridico c1 = new ClienteJuridico("3213685", "27835623569",
+                170000);
+          /*c1.setNome("Paulo");
+          c1.setEmail("paulo@gmail.com");
+          c1.setFone("61985858596");
+          c1.setSalarioBruto(7800);*/
+        System.out.println("\nJuridico:\nCNPJ: "+c1.getCnpj()+"\nNumIE: "+c1.getNumIE()+"\nFaturamento: "+c1.getFaturamentoAnual()+"\n");
 
-        Cliente cliente2 = new Cliente();
-        cliente1.setNome("Dani");
-        cliente1.setEmail("dani@email.com");
-        cliente1.setTelefone("6198547896");
-        cliente1.setSalarioBruto(10500);
-        System.out.println("nome: "+cliente1.getNome());
+        ClienteFisico c2 = new ClienteFisico(900, "727272727");
+        System.out.println("Físico:\nSalário Bruto: "+c2.getSalarioBruto()+"\nCPF: "+c2.getCpf());
+
     }
 }

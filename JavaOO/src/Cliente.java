@@ -1,22 +1,25 @@
 public abstract class Cliente {
 
-    // Ela possui métodos concretos e métodos abstratos
-    // Ela está no alto nível da abstração
-    // Não pode ser instanciada
-    // GET SET constructor
+    //Ela possui métodos concretos e métodos abstratos
+    // Ela esta no alto nível da abstração
+    //Nao pode ser instanciada.
+    //get set contrutor..
     private String nome;
     private String email;
-    private String telefone;
+    private String fone;
     private double salarioBruto;
 
-    public Cliente(String nome, String email, String telefone, double salarioBruto) {
+    public Cliente(){
+
+    }
+    public Cliente(String nome,
+                   String email,
+                   String fone,
+                   double salarioBruto) {
         this.nome = nome;
         this.email = email;
-        this.telefone = telefone;
+        this.fone = fone;
         this.salarioBruto = salarioBruto;
-    }
-
-    public Cliente() {
     }
 
     public String getNome() {
@@ -35,12 +38,12 @@ public abstract class Cliente {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getFone() {
+        return fone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setFone(String fone) {
+        this.fone = fone;
     }
 
     public double getSalarioBruto() {
@@ -53,20 +56,21 @@ public abstract class Cliente {
     @Override
     public String toString() {
         return """
-                
-        ================================
-            DADOS DE FUNCIONÁRIO
-        ================================
-           Nome = %s
-           Email = %s
-           Telefone = %s
-           Salário = R$ %,.2f
-           ================================
-           """.formatted(
-                    this.getNome(),
-                    this.getEmail(),
-                    this.getTelefone(),
-                    this.getSalarioBruto()
+=================================
+  DADOS DO FUNCIONÁRIO
+=================================
+ Nome:      %s
+ E-mail:    %s
+ Telefone:  %s
+ Salário:   R$ %,.2f
+=================================
+""".formatted(
+                this.getNome(),
+                this.getEmail(),
+                this.getFone(),
+                this.getSalarioBruto()
         );
     }
+    //assinatura ,um contrato.
+    public abstract boolean obterIdentificacaoPrincipal();
 }
