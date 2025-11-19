@@ -35,11 +35,13 @@ public class ClienteJuridico extends Cliente{
         this.numIE = numIE;
     }
 
+    public void setFaturamentoAnual(double faturamentoAnual) {
+        this.faturamentoAnual = faturamentoAnual;
+    }
+
     public double getFaturamentoAnual() {
         return faturamentoAnual;
     }
 
-    public void setFaturamentoAnual(double faturamentoAnual) {
-        this.faturamentoAnual = faturamentoAnual;
-    }
+
 }
