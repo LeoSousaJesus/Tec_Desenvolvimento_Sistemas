@@ -7,19 +7,20 @@ public abstract class Cliente {
     private String nome;
     private String email;
     private String fone;
-    private double salarioBruto;
+    public static int contObj=0; //static (da classe)
+    //no-static (do objeto)
 
     public Cliente(){
-
+        contObj++;
     }
     public Cliente(String nome,
                    String email,
-                   String fone,
-                   double salarioBruto) {
+                   String fone) {
         this.nome = nome;
         this.email = email;
         this.fone = fone;
-        this.salarioBruto = salarioBruto;
+        contObj++;
+
     }
 
     public String getNome() {
@@ -46,13 +47,6 @@ public abstract class Cliente {
         this.fone = fone;
     }
 
-    public double getSalarioBruto() {
-        return salarioBruto;
-    }
-
-    public void setSalarioBruto(double salarioBruto) {
-        this.salarioBruto = salarioBruto;
-    }
     @Override
     public String toString() {
         return """
@@ -67,8 +61,8 @@ public abstract class Cliente {
 """.formatted(
                 this.getNome(),
                 this.getEmail(),
-                this.getFone(),
-                this.getSalarioBruto()
+                this.getFone()
+
         );
     }
     //assinatura ,um contrato.

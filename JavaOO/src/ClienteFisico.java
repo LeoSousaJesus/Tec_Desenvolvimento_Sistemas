@@ -1,11 +1,17 @@
-public class ClienteFisico extends Cliente implements ICalculoImposto{
+public class ClienteFisico extends Cliente implements ICalculoImposto {
     private double salarioBruto;
     private String cpf;
 
     public ClienteFisico() {
+        super();
     }
 
-    public ClienteFisico(double salarioBruto, String cpf) {
+    public ClienteFisico(String nome,
+                         String email,
+                         String fone,
+                         double salarioBruto,
+                         String cpf) {
+        super(nome,email,fone);
         this.salarioBruto = salarioBruto;
         this.cpf = cpf;
     }
@@ -34,7 +40,8 @@ public class ClienteFisico extends Cliente implements ICalculoImposto{
 
     @Override
     public double calcular() {
-        return 0;
+
+        return (this.salarioBruto - (this.salarioBruto)*ICalculoImposto.TAXA_IMPOSTO)-7000;
     }
 
     @Override

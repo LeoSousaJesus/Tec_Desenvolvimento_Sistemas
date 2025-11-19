@@ -13,7 +13,8 @@ public class ClienteJuridico extends Cliente{
         return false;
     }
 
-    public ClienteJuridico(String cnpj, String numIE, double faturamentoAnual) {
+    public ClienteJuridico(String nome,String email, String fone,String cnpj, String numIE, double faturamentoAnual) {
+        super(nome,email,fone);
         this.cnpj = cnpj;
         this.numIE = numIE;
         this.faturamentoAnual = faturamentoAnual;
@@ -35,13 +36,11 @@ public class ClienteJuridico extends Cliente{
         this.numIE = numIE;
     }
 
-    public void setFaturamentoAnual(double faturamentoAnual) {
-        this.faturamentoAnual = faturamentoAnual;
-    }
-
     public double getFaturamentoAnual() {
         return faturamentoAnual;
     }
 
-
+    public void setFaturamentoAnual(double faturamentoAnual) {
+        this.faturamentoAnual = faturamentoAnual;
+    }
 }
